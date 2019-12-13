@@ -40,23 +40,28 @@ $(document).ready(function () {
                             columns: [{
                                 dataField: "name.title",
                                 caption: "Title",
+                                width: 70
 
                             }, {
                                 dataField: "name.first",
-                                caption: "First Name"
+                                caption: "First Name",
+                                width: 150
                             }, {
                                 dataField: "name.last",
-                                caption: "Last Name"
+                                caption: "Last Name",
+                                width: 150
                             },
 
                             {
                                 dataField: "gender",
                                 caption: "Gender",
+                                width: 100
 
                             },
                             {
                                 dataField: "dob.age",
                                 caption: "Age",
+                                width: 70
 
                             }, {
                                 dataField: "email",
@@ -85,6 +90,12 @@ $(document).ready(function () {
                                                 {
                                                     dataField: "location.country",
                                                     caption: "Country"
+
+                                                },
+                                                {
+                                                    dataField: "dob.date",
+                                                    caption: "Date of Birth",
+                                                    dataType: "date"
 
                                                 }
 
@@ -157,23 +168,28 @@ $(document).ready(function () {
                             columns: [{
                                 dataField: "name.title",
                                 caption: "Title",
+                                width: 70
 
                             }, {
                                 dataField: "name.first",
-                                caption: "First Name"
+                                caption: "First Name",
+                                width: 150
                             }, {
                                 dataField: "name.last",
-                                caption: "Last Name"
+                                caption: "Last Name",
+                                width: 150
                             },
 
                             {
                                 dataField: "gender",
                                 caption: "Gender",
+                                width: 100
 
                             },
                             {
                                 dataField: "dob.age",
                                 caption: "Age",
+                                width: 70
 
                             }, {
                                 dataField: "email",
@@ -202,6 +218,12 @@ $(document).ready(function () {
                                                 {
                                                     dataField: "location.country",
                                                     caption: "Country"
+
+                                                },
+                                                {
+                                                    dataField: "dob.date",
+                                                    caption: "Date of Birth",
+                                                    dataType: "date"
 
                                                 }
 
@@ -273,23 +295,28 @@ $(document).ready(function () {
                             columns: [{
                                 dataField: "name.title",
                                 caption: "Title",
+                                width: 70
 
                             }, {
                                 dataField: "name.first",
-                                caption: "First Name"
+                                caption: "First Name",
+                                width: 150
                             }, {
                                 dataField: "name.last",
-                                caption: "Last Name"
+                                caption: "Last Name",
+                                width: 150
                             },
 
                             {
                                 dataField: "gender",
                                 caption: "Gender",
+                                width: 100
 
                             },
                             {
                                 dataField: "dob.age",
                                 caption: "Age",
+                                width: 70
 
                             }, {
                                 dataField: "email",
@@ -318,6 +345,12 @@ $(document).ready(function () {
                                                 {
                                                     dataField: "location.country",
                                                     caption: "Country"
+
+                                                },
+                                                {
+                                                    dataField: "dob.date",
+                                                    caption: "Date of Birth",
+                                                    dataType: "date"
 
                                                 }
 
@@ -392,23 +425,28 @@ $(document).ready(function () {
                             columns: [{
                                 dataField: "name.title",
                                 caption: "Title",
+                                width: 90
 
                             }, {
                                 dataField: "name.first",
-                                caption: "First Name"
+                                caption: "First Name",
+                                width: 150
                             }, {
                                 dataField: "name.last",
-                                caption: "Last Name"
+                                caption: "Last Name",
+                                width: 150
                             },
 
                             {
                                 dataField: "gender",
                                 caption: "Gender",
+                                width: 100
 
                             },
                             {
                                 dataField: "dob.age",
                                 caption: "Age",
+                                width: 70
 
                             }, {
                                 dataField: "email",
@@ -437,6 +475,12 @@ $(document).ready(function () {
                                                 {
                                                     dataField: "location.country",
                                                     caption: "Country"
+
+                                                },
+                                                {
+                                                    dataField: "dob.date",
+                                                    caption: "Date of Birth",
+                                                    dataType: "date"
 
                                                 }
 
