@@ -1,0 +1,297 @@
+{{!-- <!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet" />
+
+    <style>
+        .background {
+            width: 100%;
+            height: 100%;
+            opacity: 100%;
+        }
+
+        .h1 {
+            display: block;
+            font-size: 2em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .h2 {
+            display: block;
+
+            color: #6E9DDE;
+        }
+
+        .h3,
+        h3 {
+            padding-left: 25%;
+            color: #6E9DDE;
+        }
+
+        .h3,
+        h3:hover {
+            padding-left: 25%;
+            color: rgb(120, 206, 240);
+        }
+
+        .heading {
+            color: #6E9DDE;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px
+        }
+
+        .heading2 {
+            color: #6E9DDE;
+            font-size: 18px;
+            display: inline-block;
+            padding-left: 7%;
+        }
+
+
+
+        .filters {
+            padding-top: 20px;
+
+        }
+
+        .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 100%;
+            border: 3px solid #6E9DDE;
+            border-right: none;
+            padding: 5px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+        .searchDate {
+            width: 100%;
+            border: 3px solid #6E9DDE;
+            border-right: none;
+            padding: 20px;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #425e85;
+
+        }
+
+
+
+        .typeFilter {
+            border: 3px solid #6E9DDE;
+
+            padding: 5px;
+            border-radius: 5px 5px 5px 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+        .criteria {
+            border: 3px solid #6E9DDE;
+
+            padding: 5px;
+            border-radius: 5px 5px 5px 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+
+        .type {
+            border: 3px solid #6E9DDE;
+
+            padding: 5px;
+            border-radius: 5px 5px 5px 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+        .operator {
+            border: 3px solid #6E9DDE;
+
+            padding: 5px;
+            border-radius: 5px 5px 5px 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+        .addFilter {
+            border: 3px solid #6E9DDE;
+
+            padding: 5px;
+            border-radius: 5px 5px 5px 5px;
+            outline: none;
+            color: #425e85;
+        }
+
+        .searchTerm:focus {
+            color: #425e85;
+        }
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #6E9DDE;
+            background: #6E9DDE;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /*Resize the wrap to see the search bar change!*/
+        .wrap {
+            width: 50%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .advanced {
+            color: #6E9DDE;
+            font-size: 10;
+            align-content: center;
+        }
+
+        .homeImage {
+            display: block;
+
+            float: left;
+
+            height: 200px;
+            width: 220px;
+
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: auto;
+
+        }
+
+        th {
+            cursor: pointer;
+        }
+
+        td,
+        th {
+            border: 5px solid #626168;
+            text-align: left;
+            padding: 8px;
+            color: #6E9DDE;
+        }
+    </style>
+    <div>
+        {{>header}}
+    </div>
+</head>
+
+<body>
+    <div class="background">
+        <img class="background" src="img/sample.jpg" />
+
+
+
+
+        <div class="wrap">
+            <div><img class="homeImage" src="img/serler icon v3 _300px.png" /></div>
+
+
+            <div>
+                <h2 class="heading"> This App Generates Users from API</h2>
+            </div>
+
+            <br>
+            <br>
+            <form id="search">
+
+                <div class="search">
+
+
+
+                    <input class="searchButton" title="Get Any one user randomly" type="button" id="user"
+                        value="User" />
+                    <input class="searchButton" style="margin-left: 10px;" title="Get One Male user randomly"
+                        type="button" id="male" value="Male User" />
+                    <input class="searchButton" style="margin-left: 10px;width:128px"
+                        title="Get One Female user randomly" type="button" id="female" value="Female User" />
+                    <input type="text" class="searchTerm" id="searchTerm" style="margin-left: 10px; width:150px"
+                        placeholder="Enter No. of Records ">
+                    <button type="button" class="searchButton" title="Gets the no. of records you entered"
+                        id="numberUser">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+
+
+            <br>
+            <br>
+            <br>
+
+
+            <div id="results" style="display: none">
+                <h2 style="color:blanchedalmond" id="errorResult"></h2>
+            </div>
+
+            <div class="nav-btn-container">
+                <button class="prev-btn">Prev</button>
+                <button class="next-btn">Next</button>
+            </div>
+            <div style="padding-top: 20px; overflow-y:scroll">
+                <table id="answer" style="display: none;">
+                    <tr>
+                        <th> Profile Photo</th>
+                        <th> Title</th>
+                        <th onclick="sortTable(2)">First Name</th>
+                        <th onclick="sortTable(3)">Last Name</th>
+                        <th onclick="sortTable(4)">age</th>
+                        <th> Phone</th>
+                        <th>Cell</th>
+                        <th>Email</th>
+                    </tr>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="nav-btn-container">
+                <button class="prev-btn">Prev</button>
+                <button class="next-btn">Next</button>
+            </div>
+
+
+        </div>
+
+        {{>footer}}
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/features.js">
+
+
+    </script>
+
+
+</body>
+
+</html> --}}

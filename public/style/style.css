@@ -133,3 +133,27 @@ th {
   padding: 8px;
   color: blanchedalmond;
 }
+#gridContainer {
+  height: 0px;
+}
+
+#gridContainer .dx-datagrid-content tr.dx-data-row {
+  cursor: pointer;
+}
+
+.employeeInfo .employeePhoto {
+  height: 140px;
+  float: left;
+  padding: 20px 20px 20px 0;
+}
+
+.employeeInfo .employeeNotes {
+  padding-top: 20px;
+  text-align: justify;
+  white-space: normal;
+}
+.master-detail-caption {
+  padding: 0 0 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
