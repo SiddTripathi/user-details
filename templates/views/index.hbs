@@ -3,10 +3,23 @@
 <html>
 
 <head>
+
+
+
+
     <link rel="stylesheet" href="/style/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link href="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    {{!-- <link rel="dx-theme" data-theme="generic.light" href="/Lib/css/css/dx.light.css" data-active="false">
+    <link rel="dx-theme" data-theme="generic.common" href="/Lib/css/css/dx.common.css" data-active="false">
+    <link rel="dx-theme" data-theme="generic.contrast" href="assets/dx.contrast.css" data-active="false"> --}}
+    {{!-- <link rel="stylesheet" href="/Lib/css/css/dx.common.css">
+    <link rel="stylesheet" href="/Lib/css/css/dx.light.css"> --}}
+    <script type="text/javascript" src="/Lib/js/dx.all.js"></script>
+
 
     <style>
         .background {
@@ -250,33 +263,17 @@
             <div id="results" style="display: none">
                 <h2 style="color:blanchedalmond" id="errorResult"></h2>
             </div>
-            <div style="padding-top: 20px; overflow-y:scroll">
-
-                <table id="answer" style="display: none;">
-                    <tr>
-                        <th> Profile Photo</th>
-                        <th> Title</th>
-                        <th onclick="sortTable(2)">First Name</th>
-                        <th onclick="sortTable(3)">Last Name</th>
-                        <th onclick="sortTable(4)">age</th>
-                        <th> Phone</th>
-                        <th>Cell</th>
-                        <th>Email</th>
+            <div class="demo-container">
+                <div id="gridContainer"></div>
 
 
-                    </tr>
-                    <tbody id="tbody">
-
-                    </tbody>
-
-                </table>
 
             </div>
         </div>
 
         {{>footer}}
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script src="/js/app.js"></script>
     <script src="/js/features.js">
 

@@ -1,222 +1,468 @@
 $(document).ready(function () {
     $('#user').click(function (event) {
-        $.getJSON('/user', function (data) {
+        $.ajax({
+            method: "GET",
+            url: '/user',
 
-            if (!data) {
-                $("#errorResult").html("Results:" + data.error);
-                $("#results").show();
+            success: data => {
+                if (!data) {
+                    $("#errorResult").html("Results:" + data.error);
+                    $("#results").show();
+                }
+                else {
+                    let userData = data.results;
+
+                    $("#errorResult").html("Results -");
+                    // $("#results").show();
+
+                    $(function () {
+                        console.log(userData)
+                        $("#gridContainer").dxDataGrid({
+                            dataSource: userData,
+                            pager: {
+                                showPageSizeSelector: true,
+                                allowedPageSizes: [10, 20, 50],
+                                showNavigationButtons: true
+                            },
+
+                            showBorders: true,
+                            selection: {
+                                mode: "single"
+                            },
+                            onSelectionChanged: function (e) {
+                                e.component.collapseAll(-1);
+                                e.component.expandRow(e.currentSelectedRowKeys[0]);
+                            },
+                            onContentReady: function (e) {
+                                if (!e.component.getSelectedRowKeys().length)
+                                    e.component.selectRowsByIndexes(0);
+                            },
+                            columns: [{
+                                dataField: "name.title",
+                                caption: "Title",
+
+                            }, {
+                                dataField: "name.first",
+                                caption: "First Name"
+                            }, {
+                                dataField: "name.last",
+                                caption: "Last Name"
+                            },
+
+                            {
+                                dataField: "gender",
+                                caption: "Gender",
+
+                            },
+                            {
+                                dataField: "dob.age",
+                                caption: "Age",
+
+                            }, {
+                                dataField: "email",
+                                caption: "E-mail"
+                            }],
+                            masterDetail: {
+                                enabled: false,
+                                template: function (container, options) {
+                                    var currentEmployeeData = options.data;
+                                    container.append($('<div class="employeeInfo"><img class="employeePhoto" src="' + currentEmployeeData.picture.medium + '" /><p class="employeeNotes">Current Location: ' + currentEmployeeData.location.city + '</p>' +
+                                        '<p class="employeeNotes">Cell Number: ' + currentEmployeeData.cell + '</p></div>'));
+                                    $("<div>")
+                                        .dxDataGrid({
+                                            columnAutoWidth: true,
+                                            showBorders: true,
+                                            columns: [
+                                                {
+                                                    dataField: "login.username",
+                                                    caption: "User Id"
+                                                },
+                                                {
+                                                    dataField: "location.city",
+                                                    caption: "City"
+
+                                                },
+                                                {
+                                                    dataField: "location.country",
+                                                    caption: "Country"
+
+                                                }
+
+                                            ],
+                                            dataSource: new DevExpress.data.DataSource({
+                                                store: new DevExpress.data.ArrayStore({
+                                                    key: "login.uuid",
+                                                    data: userData
+                                                }),
+                                                filter: ["login.uuid", "=", currentEmployeeData.login.uuid]
+                                            })
+
+                                        }).appendTo(container);
+                                }
+
+
+
+                            }
+                        });
+                    })
+                    // $("#tbody").html(str);
+                    $("#answer").show();
+                }
+
             }
-            else {
-                data = data.results;
 
-                $("#errorResult").html("Results -");
-                $("#results").show();
-                let str = "";
-                data.forEach(d => {
-
-                    str +=
-                        "<tr>" +
-                        "<td><img src=" + "\"" +
-                        d.picture.medium +
-                        "\"" +
-                        "/></td>" +
-                        "<td>" +
-                        d.name.title +
-                        "</td>" +
-                        "<td>" +
-                        d.name.first +
-                        "</td>" +
-                        "<td>" +
-                        d.name.last +
-                        "</td>" +
-                        "<td>" +
-                        d.dob.age +
-                        "</td>" +
-                        "<td>" +
-                        d.phone +
-                        "</td>" +
-                        "<td>" +
-                        d.cell +
-                        "</td>" +
-                        "<td>" +
-                        d.email +
-                        "</td>" +
-                        "</tr>";
-                });
-                $("#tbody").html(str);
-                $("#answer").show();
-            }
-
-            console.log(data)
-            //console.log(data.results[0].name.first)
         })
     })
 })
 
 $(document).ready(function () {
     $('#male').click(function (event) {
-        $.getJSON('/user?gender=male', function (data) {
+        $.ajax({
+            method: "GET",
+            url: '/user?gender=male',
 
-            if (!data) {
-                $("#errorResult").html("Results:" + data.error);
-                $("#results").show();
+            success: data => {
+                if (!data) {
+                    $("#errorResult").html("Results:" + data.error);
+                    $("#results").show();
+                }
+                else {
+                    let userData = data.results;
+
+                    $("#errorResult").html("Results -");
+                    // $("#results").show();
+
+                    $(function () {
+                        console.log(userData)
+                        $("#gridContainer").dxDataGrid({
+                            dataSource: userData,
+                            pager: {
+                                showPageSizeSelector: true,
+                                allowedPageSizes: [10, 20, 50],
+                                showNavigationButtons: true
+                            },
+
+                            showBorders: true,
+                            selection: {
+                                mode: "single"
+                            },
+                            onSelectionChanged: function (e) {
+                                e.component.collapseAll(-1);
+                                e.component.expandRow(e.currentSelectedRowKeys[0]);
+                            },
+                            onContentReady: function (e) {
+                                if (!e.component.getSelectedRowKeys().length)
+                                    e.component.selectRowsByIndexes(0);
+                            },
+                            columns: [{
+                                dataField: "name.title",
+                                caption: "Title",
+
+                            }, {
+                                dataField: "name.first",
+                                caption: "First Name"
+                            }, {
+                                dataField: "name.last",
+                                caption: "Last Name"
+                            },
+
+                            {
+                                dataField: "gender",
+                                caption: "Gender",
+
+                            },
+                            {
+                                dataField: "dob.age",
+                                caption: "Age",
+
+                            }, {
+                                dataField: "email",
+                                caption: "E-mail"
+                            }],
+                            masterDetail: {
+                                enabled: false,
+                                template: function (container, options) {
+                                    var currentEmployeeData = options.data;
+                                    container.append($('<div class="employeeInfo"><img class="employeePhoto" src="' + currentEmployeeData.picture.medium + '" /><p class="employeeNotes">Current Location: ' + currentEmployeeData.location.city + '</p>' +
+                                        '<p class="employeeNotes">Cell Number: ' + currentEmployeeData.cell + '</p></div>'));
+                                    $("<div>")
+                                        .dxDataGrid({
+                                            columnAutoWidth: true,
+                                            showBorders: true,
+                                            columns: [
+                                                {
+                                                    dataField: "login.username",
+                                                    caption: "User Id"
+                                                },
+                                                {
+                                                    dataField: "location.city",
+                                                    caption: "City"
+
+                                                },
+                                                {
+                                                    dataField: "location.country",
+                                                    caption: "Country"
+
+                                                }
+
+                                            ],
+                                            dataSource: new DevExpress.data.DataSource({
+                                                store: new DevExpress.data.ArrayStore({
+                                                    key: "login.uuid",
+                                                    data: userData
+                                                }),
+                                                filter: ["login.uuid", "=", currentEmployeeData.login.uuid]
+                                            })
+
+                                        }).appendTo(container);
+                                }
+
+
+
+                            }
+                        });
+                    })
+                    // $("#tbody").html(str);
+                    $("#answer").show();
+                }
+
             }
-            else {
-                data = data.results;
-                $("#errorResult").html("Results -");
-                $("#results").show();
-                let str = "";
-                data.forEach(d => {
 
-                    str +=
-                        "<tr>" +
-                        "<td><img src=" + "\"" +
-                        d.picture.medium +
-                        "\"" +
-                        "/></td>" +
-                        "<td>" +
-                        d.name.title +
-                        "</td>" +
-                        "<td>" +
-                        d.name.first +
-                        "</td>" +
-                        "<td>" +
-                        d.name.last +
-                        "</td>" +
-                        "<td>" +
-                        d.dob.age +
-                        "</td>" +
-                        "<td>" +
-                        d.phone +
-                        "</td>" +
-                        "<td>" +
-                        d.cell +
-                        "</td>" +
-                        "<td>" +
-                        d.email +
-                        "</td>" +
-                        "</tr>";
-                });
-                $("#tbody").html(str);
-                $("#answer").show();
-            }
-
-            console.log(data)
-            console.log(data.results[0].name.first)
         })
     })
 })
 $(document).ready(function () {
     $('#female').click(function (event) {
-        $.getJSON('/user?gender=female', function (data) {
+        $.ajax({
+            method: "GET",
+            url: '/user?gender=female',
 
-            if (!data) {
-                $("#errorResult").html("Results:" + data.error);
-                $("#results").show();
+            success: data => {
+                if (!data) {
+                    $("#errorResult").html("Results:" + data.error);
+                    $("#results").show();
+                }
+                else {
+                    let userData = data.results;
+
+                    $("#errorResult").html("Results -");
+                    // $("#results").show();
+
+                    $(function () {
+                        console.log(userData)
+                        $("#gridContainer").dxDataGrid({
+                            dataSource: userData,
+                            pager: {
+                                showPageSizeSelector: true,
+                                allowedPageSizes: [10, 20, 50],
+                                showNavigationButtons: true
+                            },
+
+                            showBorders: true,
+                            selection: {
+                                mode: "single"
+                            },
+                            onSelectionChanged: function (e) {
+                                e.component.collapseAll(-1);
+                                e.component.expandRow(e.currentSelectedRowKeys[0]);
+                            },
+                            onContentReady: function (e) {
+                                if (!e.component.getSelectedRowKeys().length)
+                                    e.component.selectRowsByIndexes(0);
+                            },
+                            columns: [{
+                                dataField: "name.title",
+                                caption: "Title",
+
+                            }, {
+                                dataField: "name.first",
+                                caption: "First Name"
+                            }, {
+                                dataField: "name.last",
+                                caption: "Last Name"
+                            },
+
+                            {
+                                dataField: "gender",
+                                caption: "Gender",
+
+                            },
+                            {
+                                dataField: "dob.age",
+                                caption: "Age",
+
+                            }, {
+                                dataField: "email",
+                                caption: "E-mail"
+                            }],
+                            masterDetail: {
+                                enabled: false,
+                                template: function (container, options) {
+                                    var currentEmployeeData = options.data;
+                                    container.append($('<div class="employeeInfo"><img class="employeePhoto" src="' + currentEmployeeData.picture.medium + '" /><p class="employeeNotes">Current Location: ' + currentEmployeeData.location.city + '</p>' +
+                                        '<p class="employeeNotes">Cell Number: ' + currentEmployeeData.cell + '</p></div>'));
+                                    $("<div>")
+                                        .dxDataGrid({
+                                            columnAutoWidth: true,
+                                            showBorders: true,
+                                            columns: [
+                                                {
+                                                    dataField: "login.username",
+                                                    caption: "User Id"
+                                                },
+                                                {
+                                                    dataField: "location.city",
+                                                    caption: "City"
+
+                                                },
+                                                {
+                                                    dataField: "location.country",
+                                                    caption: "Country"
+
+                                                }
+
+                                            ],
+                                            dataSource: new DevExpress.data.DataSource({
+                                                store: new DevExpress.data.ArrayStore({
+                                                    key: "login.uuid",
+                                                    data: userData
+                                                }),
+                                                filter: ["login.uuid", "=", currentEmployeeData.login.uuid]
+                                            })
+
+                                        }).appendTo(container);
+                                }
+
+                            }
+                        });
+                    })
+                    // $("#tbody").html(str);
+                    $("#answer").show();
+                }
+
             }
-            else {
 
-                data = data.results;
-                console.log(data)
-                $("#errorResult").html("Results -");
-                $("#results").show();
-                let str = "";
-                data.forEach(d => {
-
-                    str +=
-                        "<tr>" +
-                        "<td><img src=" + "\"" +
-                        d.picture.medium +
-                        "\"" +
-                        "/></td>" +
-                        "<td>" +
-                        d.name.title +
-                        "</td>" +
-                        "<td>" +
-                        d.name.first +
-                        "</td>" +
-                        "<td>" +
-                        d.name.last +
-                        "</td>" +
-                        "<td>" +
-                        d.dob.age +
-                        "</td>" +
-                        "<td>" +
-                        d.phone +
-                        "</td>" +
-                        "<td>" +
-                        d.cell +
-                        "</td>" +
-                        "<td>" +
-                        d.email +
-                        "</td>" +
-                        "</tr>";
-                });
-                $("#tbody").html(str);
-                $("#answer").show();
-            }
-
-            console.log(data)
-            console.log(data.results[0].name.first)
         })
     })
 })
+
+
 
 $(document).ready(function () {
 
     $('#numberUser').click(function (event) {
         let numberOfUser = $('#searchTerm').val()
-        $.getJSON('/user?results=' + numberOfUser, function (data) {
+        $.ajax({
+            method: "GET",
+            url: '/user?results=' + numberOfUser,
+
+            success: data => {
+                if (!data) {
+                    $("#errorResult").html("Results:" + data.error);
+                    $("#results").show();
+                }
+                else {
+                    let userData = data.results;
+
+                    $("#errorResult").html("Results -");
+                    // $("#results").show();
+
+                    $(function () {
+                        console.log(userData)
+                        $("#gridContainer").dxDataGrid({
+                            dataSource: userData,
+                            pager: {
+                                showPageSizeSelector: true,
+                                allowedPageSizes: [10, 20, 50],
+                                showNavigationButtons: true
+                            },
+
+                            showBorders: true,
+                            selection: {
+                                mode: "single"
+                            },
+                            onSelectionChanged: function (e) {
+                                e.component.collapseAll(-1);
+                                e.component.expandRow(e.currentSelectedRowKeys[0]);
+                            },
+                            onContentReady: function (e) {
+                                if (!e.component.getSelectedRowKeys().length)
+                                    e.component.selectRowsByIndexes(0);
+                            },
+                            columns: [{
+                                dataField: "name.title",
+                                caption: "Title",
+
+                            }, {
+                                dataField: "name.first",
+                                caption: "First Name"
+                            }, {
+                                dataField: "name.last",
+                                caption: "Last Name"
+                            },
+
+                            {
+                                dataField: "gender",
+                                caption: "Gender",
+
+                            },
+                            {
+                                dataField: "dob.age",
+                                caption: "Age",
+
+                            }, {
+                                dataField: "email",
+                                caption: "E-mail"
+                            }],
+                            masterDetail: {
+                                enabled: false,
+                                template: function (container, options) {
+                                    var currentEmployeeData = options.data;
+                                    container.append($('<div class="employeeInfo"><img class="employeePhoto" src="' + currentEmployeeData.picture.medium + '" /><p class="employeeNotes">Current Location: ' + currentEmployeeData.location.city + '</p>' +
+                                        '<p class="employeeNotes">Cell Number: ' + currentEmployeeData.cell + '</p></div>'));
+                                    $("<div>")
+                                        .dxDataGrid({
+                                            columnAutoWidth: true,
+                                            showBorders: true,
+                                            columns: [
+                                                {
+                                                    dataField: "login.username",
+                                                    caption: "User Id"
+                                                },
+                                                {
+                                                    dataField: "location.city",
+                                                    caption: "City"
+
+                                                },
+                                                {
+                                                    dataField: "location.country",
+                                                    caption: "Country"
+
+                                                }
+
+                                            ],
+                                            dataSource: new DevExpress.data.DataSource({
+                                                store: new DevExpress.data.ArrayStore({
+                                                    key: "login.uuid",
+                                                    data: userData
+                                                }),
+                                                filter: ["login.uuid", "=", currentEmployeeData.login.uuid]
+                                            })
+
+                                        }).appendTo(container);
+                                }
 
 
 
-            if (!data) {
-                $("#errorResult").html("Results:" + data.error);
-                $("#results").show();
+                            }
+                        });
+                    })
+                    // $("#tbody").html(str);
+                    $("#answer").show();
+                }
+
             }
-            else {
-                data = data.results;
-                $("#errorResult").html("Results -");
-                $("#results").show();
-                let str = "";
-                data.forEach(d => {
 
-                    str +=
-                        "<tr>" +
-                        "<td><img src=" + "\"" +
-                        d.picture.medium +
-                        "\"" +
-                        "/></td>" +
-                        "<td>" +
-                        d.name.title +
-                        "</td>" +
-                        "<td>" +
-                        d.name.first +
-                        "</td>" +
-                        "<td>" +
-                        d.name.last +
-                        "</td>" +
-                        "<td>" +
-                        d.dob.age +
-                        "</td>" +
-                        "<td>" +
-                        d.phone +
-                        "</td>" +
-                        "<td>" +
-                        d.cell +
-                        "</td>" +
-                        "<td>" +
-                        d.email +
-                        "</td>" +
-
-                        "</tr>";
-                });
-                $("#tbody").html(str);
-                $("#answer").show();
-            }
-
-            console.log(data)
-            console.log(data[0].name.first)
         })
     })
 })
